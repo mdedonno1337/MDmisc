@@ -49,8 +49,8 @@ class TemporaryDirectory( object ):
                 print( "ERROR: {!r} while cleaning up {!r}".format( ex, self, ), file = _sys.stderr )
                 return
             self._closed = True
-            if _warn:
-                self._warn( "Implicitly cleaning up {!r}".format( self ), ResourceWarning )
+#             if _warn:
+#                 self._warn( "Implicitly cleaning up {!r}".format( self ), ResourceWarning )
 
     def __exit__( self, exc, value, tb ):
         self.cleanup()
