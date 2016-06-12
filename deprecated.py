@@ -1,23 +1,37 @@
 #!/usr/bin/env python
 
+from inspect import isfunction
+import functools
 import warnings
 
-def deprecated( func ):
-    """
-        This is a decorator which can be used to mark functions as deprecated.
-        It will result in a warning being emmitted when the function is used.
+from lib.misc.boxer import boxer
+
+
+def deprecated( func = None, msg = None, *args ):
+    if isfunction( func ):
+        warnmsg = "Call to deprecated function %s" % func.__name__
         
-        http://stackoverflow.com/questions/2536307/decorators-in-the-python-standard-lib-deprecated-specifically
-        Patrizio Bertoni
-    """
+        if msg != None:
+            warnmsg += " : " + msg
+        
+        @functools.wraps( func )
+        def f( *args, **kwargs ):
+            warnings.simplefilter( 'always', DeprecationWarning )
+            warnings.warn( warnmsg, category = DeprecationWarning, stacklevel = 2 )
+            warnings.simplefilter( 'default', DeprecationWarning )
+            
+            return func( *args, **kwargs )
+        
+        return f
+    else:
+        if type( func ) == str:
+            try:
+                msg = " ".join( ( func, msg, ) + args ) 
+            except:
+                msg = func
+        elif type( func ) == list:
+            msg = " ".join( func )
+        else:
+            msg = msg
 
-    def new_func( *args, **kwargs ):
-        warnings.simplefilter( 'always', DeprecationWarning ) # turn off filter 
-        warnings.warn( "Call to deprecated function {}.".format( func.__name__ ), category = DeprecationWarning, stacklevel = 2 )
-        warnings.simplefilter( 'default', DeprecationWarning ) # reset filter
-        return func( *args, **kwargs )
-
-    new_func.__name__ = func.__name__
-    new_func.__doc__ = func.__doc__
-    new_func.__dict__.update( func.__dict__ )
-    return new_func
+        return functools.partial( deprecated, msg = msg )
