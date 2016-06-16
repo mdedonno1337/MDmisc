@@ -9,10 +9,7 @@ from lib.misc.boxer import boxer
 
 def deprecated( func = None, msg = None, *args ):
     if isfunction( func ):
-        warnmsg = "Call to deprecated function %s" % func.__name__
-        
-        if msg != None:
-            warnmsg += " : " + msg
+        warnmsg = boxer( "Call to deprecated function %s" % func.__name__, msg )
         
         @functools.wraps( func )
         def f( *args, **kwargs ):
