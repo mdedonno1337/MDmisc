@@ -15,8 +15,13 @@ def int_to_bin( x, digits = 0 ):
         '00000000000000000000010100111001'
     """
     oct2bin = [ '000', '001', '010', '011', '100', '101', '110', '111' ] 
-    binstring = [ oct2bin[int( n )] for n in oct( x ) ] 
-    return ''.join( binstring ).lstrip( '0' ).zfill( digits ) 
+    binstring = [ oct2bin[int( n )] for n in oct( x ) ]
+    binstring = ''.join( binstring ).lstrip( '0' )
+    
+    if digits == 'up':
+        digits = 8 * ( len( binstring ) / 8 + 1 )
+        
+    return binstring.zfill( digits ) 
 
 def bin_to_int( x ):
     """
