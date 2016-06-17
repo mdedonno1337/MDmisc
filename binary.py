@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 #  *-* coding: utf-8 *-*
 
+from lib.misc.stringIterator import stringIterator
 import struct
 
 
@@ -80,6 +81,20 @@ def binstring_to_int( data ):
         b += int_to_bin( ord( c ), 8 )
     
     return bin_to_int( b )
+
+def int_to_binstring( data ):
+    """
+        Convert an int to a string of character
+        
+        >>> int_to_binstring( 1818584436 )
+        'leet'
+    """
+    b = int_to_bin( data, digits = 'up' )
+    nbites = len( b ) / 8
+    
+    iterbyte = stringIterator( b )
+    
+    return "".join( [ chr( bin_to_int( iterbyte.take( 8 ) ) ) for _ in xrange( nbites ) ] )
 
 if __name__ == "__main__":
     import doctest
