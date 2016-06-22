@@ -82,14 +82,14 @@ def binstring_to_int( data ):
     
     return bin_to_int( b )
 
-def int_to_binstring( data ):
+def int_to_binstring( data, digits = 'up' ):
     """
         Convert an int to a string of character
         
         >>> int_to_binstring( 1818584436 )
         'leet'
     """
-    b = int_to_bin( data, digits = 'up' )
+    b = int_to_bin( data, digits )
     nbites = len( b ) / 8
     
     iterbyte = stringIterator( b )
