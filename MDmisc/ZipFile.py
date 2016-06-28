@@ -1,6 +1,8 @@
 #!/usr/bin/env python
 #  *-* coding: cp850 *-*
 
+from __future__ import print_function
+
 import zipfile
 from cStringIO import StringIO as io
 
@@ -22,7 +24,7 @@ class ZipFileExtended( zipfile.ZipFile ):
             self._RealGetContents()
             
         except Exception as e:
-            print str( e )
+            print( str( e ) )
             
         finally:
             return
