@@ -3,7 +3,7 @@
 
 import logging
 
-from lib.misc.boxer import boxer
+from MDmisc.boxer import boxer
 
 
 class MyLogger:

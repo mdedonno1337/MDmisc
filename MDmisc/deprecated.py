@@ -4,7 +4,7 @@ from inspect import isfunction
 import functools
 import warnings
 
-from lib.misc.boxer import boxer
+from MDmisc.boxer import boxer
 
 
 def deprecated( func = None, msg = None, *args ):
