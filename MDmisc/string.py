@@ -1,5 +1,11 @@
-#!/usr/bin/env python
-#  *-* coding: utf-8 *-*
+#!/usr/bin/python
+# -*- coding: UTF-8 -*-
+
+def upper( data ):
+    return data.upper()
+
+def join( i, c ):
+    return c.join( i )
 
 class stringIterator( object ):
     def __init__( self, data ):

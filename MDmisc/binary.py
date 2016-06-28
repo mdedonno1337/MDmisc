@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 #  *-* coding: utf-8 *-*
 
-from MDmisc.stringIterator import stringIterator
+from MDmisc.string import stringIterator
 import struct
 
 
