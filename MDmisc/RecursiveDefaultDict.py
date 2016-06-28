@@ -3,7 +3,7 @@
 
 from _collections import defaultdict
 
-from lib.misc.DefaultOrderedDict import DefaultOrderedDict
+from MDmisc.DefaultOrderedDict import DefaultOrderedDict
 
 
 defDict = lambda: defaultdict( defDict )
