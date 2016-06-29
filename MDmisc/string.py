@@ -2,15 +2,30 @@
 # -*- coding: UTF-8 -*-
 
 def upper( data ):
+    """
+        Function equivalent of the str.upper() function.
+    """
     return data.upper()
 
 def join( i, c ):
     return c.join( i )
 
 def split( i, c ):
+    """
+        Function equivalent of str.split()
+        
+        >>> split( ";", "1-2-3;4-5-6;7-8-9" )
+        ['1-2-3', '4-5-6', '7-8-9']
+    """
     return c.split( i )
 
 def split_r( lst, s ):
+    """
+        Recursive split a string.
+        
+        >>> split_r( [ ';', '-' ], "1-2-3;4-5-6;7-8-9" )
+        [['1', '2', '3'], ['4', '5', '6'], ['7', '8', '9']]
+    """
     try:
         return map( lambda x: split_r( lst[ 1: ], x ), s.split( lst[ 0 ] ) )
     except:
