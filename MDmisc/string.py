@@ -7,6 +7,15 @@ def upper( data ):
 def join( i, c ):
     return c.join( i )
 
+def split( i, c ):
+    return c.split( i )
+
+def split_r( lst, s ):
+    try:
+        return map( lambda x: split_r( lst[ 1: ], x ), s.split( lst[ 0 ] ) )
+    except:
+        return s
+
 class stringIterator( object ):
     def __init__( self, data ):
         self.data = data
