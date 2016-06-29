@@ -7,7 +7,13 @@ def upper( data ):
     """
     return data.upper()
 
-def join( i, c ):
+def join( c, i ):
+    """
+        Function equivalent of the str.join() function.
+        
+        >>> join( ";", ['1-2-3', '4-5-6', '7-8-9'] )
+        '1-2-3;4-5-6;7-8-9'
+    """
     return c.join( i )
 
 def split( i, c ):
