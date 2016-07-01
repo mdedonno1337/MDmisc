@@ -7,13 +7,21 @@ def upper( data ):
     """
     return data.upper()
 
-def join( c, i ):
+def join( c, i = None ):
     """
-        Function equivalent of the str.join() function.
+        Function equivalent of the str.join() function. If the function is
+        called only with one argument, i.e. the list, the join is made without
+        spacing between the elements of the list.
         
         >>> join( ";", ['1-2-3', '4-5-6', '7-8-9'] )
         '1-2-3;4-5-6;7-8-9'
+        
+        >>> join( ['1', '2', '3', '4', '5', '6'] )
+        '123456'
     """
+    if i == None:
+        c, i = "", c
+        
     return c.join( i )
 
 def split( i, c ):
