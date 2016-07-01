@@ -1,8 +1,8 @@
 #!/usr/bin/python
 # -*- coding: UTF-8 -*-
 
-from boxer import boxer
-from logger import debug
+from .boxer import boxer
+from .logger import debug
 
 
 def upper( data ):
