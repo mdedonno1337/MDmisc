@@ -1,6 +1,10 @@
 #!/usr/bin/python
 # -*- coding: UTF-8 -*-
 
+from boxer import boxer
+from logger import debug
+
+
 def upper( data ):
     """
         Function equivalent of the str.upper() function.
@@ -21,8 +25,12 @@ def join( c, i = None ):
     """
     if i == None:
         c, i = "", c
-        
-    return c.join( i )
+    
+    try:
+        return c.join( i )
+    except:
+        debug.critical( boxer( "Error in calling the join() function", "The separator have to be passed first, and the iterable second" ), 1 )
+        return i.join( c )
 
 def split( i, c ):
     """
