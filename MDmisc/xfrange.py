@@ -1,5 +1,5 @@
 #!/usr/bin/env python
-#  *-* coding: cp850 *-*
+# -*- coding: UTF-8 -*-
 
 def xfrange( start, stop = None, step = 1.0 ):
     """
