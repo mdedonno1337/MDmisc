@@ -22,14 +22,21 @@ class TemporaryDirectory( object ):
         
         Leonardo.Z
         http://stackoverflow.com/questions/19296146/tempfile-temporarydirectory-context-manager-in-python-2-7
+        
+        Modified by Marco De Donno (mdedonno1337@gmail.com)
     
     """
 
     def __init__( self, suffix = "", prefix = "tmp", dir = None ):
+        self.cwd = _os.getcwd()
+        
         self._closed = False
-        self.name = None  # Handle mkdtemp raising an exception
-        self.name = mkdtemp( suffix, prefix, dir )
-
+        
+        try:
+            self.name = mkdtemp( suffix, prefix, dir )
+        except:
+            self.name = None
+        
     def __repr__( self ):
         return "<{} {!r}>".format( self.__class__.__name__, self.name )
 
@@ -54,6 +61,7 @@ class TemporaryDirectory( object ):
 
     def __exit__( self, exc, value, tb ):
         self.cleanup()
+        _os.chdir( self.cwd )
 
     def __del__( self ):
         # Issue a ResourceWarning if implicit cleanup needed
