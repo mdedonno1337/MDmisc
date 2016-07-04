@@ -70,3 +70,7 @@ class stringIterator( object ):
     
     def __iter__( self ):
         return self
+    
+def split_no_empty( data, string ):
+    return [ value for value in data.split( string ) if value != "" ]
+
