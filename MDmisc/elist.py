@@ -14,3 +14,10 @@ def replace_r( x, s, r ):
 
 def flatten( lst ):
     return [ item for sublist in lst for item in sublist ]
+
+def ifany( a, b ):
+    for i in a:
+        if i in b:
+            return True
+    else:
+        return False
