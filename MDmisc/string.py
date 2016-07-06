@@ -72,5 +72,11 @@ class stringIterator( object ):
         return self
     
 def split_no_empty( data, string ):
+    """
+        Return the data.split( string ) list without the empty values.
+        
+        >>> split_no_empty( "1-2-3--4-5", "-" )
+        ['1', '2', '3', '4', '5']
+    """
     return [ value for value in data.split( string ) if value != "" ]
 
