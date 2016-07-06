@@ -1,10 +1,11 @@
 #!/usr/bin/python
 # -*- coding: UTF-8 -*-
 
-from MDmisc import string, xfrange
 import doctest
 import unittest
 
+from MDmisc import string
+from MDmisc import xfrange
 
 def MDmisctsets():
     tests = unittest.TestSuite()

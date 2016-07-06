@@ -2,7 +2,7 @@
 # -*- coding: UTF-8 -*-
 
 import base64
-import cStringIO as StringIO
+from cStringIO import StringIO
 import gzip
 import pickle
 

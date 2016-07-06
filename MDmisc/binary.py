@@ -1,8 +1,9 @@
 #!/usr/bin/env python
 #  *-* coding: utf-8 *-*
 
-from MDmisc.string import stringIterator
 import struct
+
+from .string import stringIterator
 
 
 def int_to_bin( x, digits = 0 ):
