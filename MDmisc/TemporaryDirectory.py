@@ -17,13 +17,19 @@ class TemporaryDirectory( object ):
             with TemporaryDirectory() as tmpdir:
                 ...
 
+        The os.setcwd() function is called in the TemporaryDirectory() to wet
+        the working directory to the tempdir. The current working directory is
+        resetted upon exiting the contex.
+        
         Upon exiting the context, the directory and everything contained in it
         are removed.
         
-        Leonardo.Z
-        http://stackoverflow.com/questions/19296146/tempfile-temporarydirectory-context-manager-in-python-2-7
+        Original code:
+            Leonardo.Z
+            http://stackoverflow.com/questions/19296146/tempfile-temporarydirectory-context-manager-in-python-2-7
         
-        Modified by Marco De Donno (mdedonno1337@gmail.com)
+        Modified by:
+            Marco De Donno (mdedonno1337@gmail.com)
     
     """
 
@@ -41,6 +47,7 @@ class TemporaryDirectory( object ):
         return "<{} {!r}>".format( self.__class__.__name__, self.name )
 
     def __enter__( self ):
+        _os.chdir( self.name )
         return self.name
 
     def cleanup( self, _warn = False ):
@@ -48,29 +55,19 @@ class TemporaryDirectory( object ):
             try:
                 self._rmtree( self.name )
             except ( TypeError, AttributeError ) as ex:
-                # Issue #10188: Emit a warning on stderr
-                # if the directory could not be cleaned
-                # up due to missing globals
                 if "None" not in str( ex ):
                     raise
                 print( "ERROR: {!r} while cleaning up {!r}".format( ex, self, ), file = _sys.stderr )
                 return
             self._closed = True
-#             if _warn:
-#                 self._warn( "Implicitly cleaning up {!r}".format( self ), ResourceWarning )
 
     def __exit__( self, exc, value, tb ):
         self.cleanup()
         _os.chdir( self.cwd )
 
     def __del__( self ):
-        # Issue a ResourceWarning if implicit cleanup needed
         self.cleanup( _warn = True )
 
-    # XXX (ncoghlan): The following code attempts to make
-    # this class tolerant of the module nulling out process
-    # that happens during CPython interpreter shutdown
-    # Alas, it doesn't actually manage it. See issue #10188
     _listdir = staticmethod( _os.listdir )
     _path_join = staticmethod( _os.path.join )
     _isdir = staticmethod( _os.path.isdir )
@@ -80,8 +77,6 @@ class TemporaryDirectory( object ):
     _warn = _warnings.warn
 
     def _rmtree( self, path ):
-        # Essentially a stripped down version of shutil.rmtree.  We can't
-        # use globals because they may be None'ed out at shutdown.
         for name in self._listdir( path ):
             fullname = self._path_join( path, name )
             try:
