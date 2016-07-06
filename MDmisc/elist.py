@@ -13,4 +13,4 @@ def replace_r( x, s, r ):
     return map_r( test, x )
 
 def flatten( lst ):
-    return [item for sublist in lst for item in sublist]
+    return [ item for sublist in lst for item in sublist ]
