@@ -97,6 +97,16 @@ def int_to_binstring( data, digits = 'up' ):
     
     return "".join( [ chr( bin_to_int( iterbyte.take( 8 ) ) ) for _ in xrange( nbites ) ] )
 
+
+def myhex( h ):
+    """
+        Return an hex value formatted.
+        
+        >>> myhex( 255 )
+        'FF'
+    """
+    return '{:02X}'.format( h )
+
 if __name__ == "__main__":
     import doctest
     doctest.testmod()
