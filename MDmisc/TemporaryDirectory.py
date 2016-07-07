@@ -94,3 +94,20 @@ class TemporaryDirectory( object ):
             self._rmdir( path )
         except OSError:
             pass
+
+class TemporaryWorkIn( object ):
+    """
+        Context manager to work in a specific directory only in this context.
+        Usefull to use os.system() function to call external software in a
+        specific directory, without having to make the os.chdir() a the end...
+    """
+    def __init__( self, name ):
+        self.cwd = _os.getcwd()
+        self.name = name
+    
+    def __enter__( self ):
+        _os.chdir( self.name )
+        return self.name
+    
+    def __exit__( self, exc, value, tb ):
+        _os.chdir( self.cwd )
