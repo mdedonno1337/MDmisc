@@ -32,6 +32,27 @@ def join( c, i = None ):
         debug.critical( boxer( "Error in calling the join() function", "The separator have to be passed first, and the iterable second" ), 1 )
         return i.join( c )
 
+def join_r( c, lst = None ):
+    """
+        Recursive join a list of list.
+        
+        >>> join_r( [ "", "-", ";" ], [[['1', '2', '3'], ['4', '5', '6'], ['7', '8', '9']], [['1', '2', '3'], ['4', '5', '6'], ['7', '8', '9']]] )
+        '123-456-789;123-456-789'
+        
+        >>> join_r( [[['1', '2', '3'], ['4', '5', '6'], ['7', '8', '9']], [['1', '2', '3'], ['4', '5', '6'], ['7', '8', '9']]] )
+        '123456789123456789'
+    """
+    if lst == None:
+        c, lst = [], c
+    
+    if type( lst[ 0 ] ) == list:
+        lst = map( lambda x: join_r( c[ :-1 ], x ), lst )
+
+    try:
+        return join( c[ -1 ], map( str, lst ) )
+    except IndexError:
+        return join( map( str, lst ) )
+
 def split( i, c ):
     """
         Function equivalent of str.split()
