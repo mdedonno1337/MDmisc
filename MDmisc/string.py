@@ -39,19 +39,31 @@ def join_r( c, lst = None ):
         >>> join_r( [ "", "-", ";" ], [[['1', '2', '3'], ['4', '5', '6'], ['7', '8', '9']], [['1', '2', '3'], ['4', '5', '6'], ['7', '8', '9']]] )
         '123-456-789;123-456-789'
         
+        >>> join_r( "-", [[['1', '2', '3'], ['4', '5', '6'], ['7', '8', '9']], [['1', '2', '3'], ['4', '5', '6'], ['7', '8', '9']]] )
+        '1-2-3-4-5-6-7-8-9-1-2-3-4-5-6-7-8-9'
+        
         >>> join_r( [[['1', '2', '3'], ['4', '5', '6'], ['7', '8', '9']], [['1', '2', '3'], ['4', '5', '6'], ['7', '8', '9']]] )
         '123456789123456789'
     """
     if lst == None:
         c, lst = [], c
     
-    if type( lst[ 0 ] ) == list:
-        lst = map( lambda x: join_r( c[ :-1 ], x ), lst )
-
-    try:
-        return join( c[ -1 ], map( str, lst ) )
-    except IndexError:
-        return join( map( str, lst ) )
+    if type( c ) == list:
+        if type( lst[ 0 ] ) == list:
+            lst = map( lambda x: join_r( c[ :-1 ], x ), lst )
+        
+        try:
+            last = c[ -1 ]
+        except:
+            last = ""
+        
+    elif type( c ) == str:
+        if type( lst[ 0 ] ) == list:
+            lst = map( lambda x: join_r( c, x ), lst )
+            
+        last = c
+        
+    return join( last, lst )
 
 def split( i, c ):
     """
