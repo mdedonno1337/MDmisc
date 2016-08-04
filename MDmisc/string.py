@@ -28,9 +28,9 @@ def join( c, i = None ):
     
     try:
         return c.join( i )
-    except:
-        debug.critical( boxer( "Error in calling the join() function", "The separator have to be passed first, and the iterable second" ), 1 )
-        return i.join( c )
+    
+    except TypeError:
+        return c.join( map( str, i ) )
 
 def join_r( c, lst = None ):
     """
