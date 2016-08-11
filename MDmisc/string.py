@@ -3,6 +3,7 @@
 
 from .boxer import boxer
 from .logger import debug
+import collections
 
 
 def upper( data ):
@@ -113,3 +114,16 @@ def split_no_empty( data, string ):
     """
     return [ value for value in data.split( string ) if value != "" ]
 
+
+def unicode2str( data ):
+    if isinstance( data, basestring ):
+        return str( data )
+    
+    elif isinstance( data, collections.Mapping ):
+        return dict( map( unicode2str, data.iteritems() ) )
+    
+    elif isinstance( data, collections.Iterable ):
+        return type( data )( map( unicode2str, data ) )
+    
+    else:
+        return data
