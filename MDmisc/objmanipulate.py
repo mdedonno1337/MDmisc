@@ -37,4 +37,12 @@ def decompress( data ):
     
     return ret
 
+def objectToCompressed( obj ):
+    return compress( objectToPickle( obj ) )
 
+def compressedToObject( data ):
+    return pickleToObject( decompress( data ) )
+
+def decompressPickleFromFile( f ):
+    with open( f ) as fp:
+        return compressedToObject( fp.read() )
