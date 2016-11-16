@@ -10,3 +10,28 @@ def scientific_format( number, digits = 3 ):
             '1.337e+07'
     """
     return ( "%%.%de" % digits ) % float( number )  
+
+def frexp10( x ):
+    """
+        Function to export the mantisse and the power of any number passed in
+        argument.
+        
+            >>> print frexp10( -1337 )
+            (-1.337, 3)
+            >>> print frexp10( -1.337e3 )
+            (-1.337, 3)
+            >>> print frexp10( -0.1337 )
+            (-1.337, -1)
+            >>> print frexp10( -1.337e-1 )
+            (-1.337, -1)
+            >>> print frexp10( 1.337e-1 )
+            (1.337, -1)
+            >>> print frexp10( 0.1337 )
+            (1.337, -1)
+            >>> print frexp10( 1.337e3 )
+            (1.337, 3)
+            >>> print frexp10( 1337 )
+            (1.337, 3)
+    """
+    m, e = ( "%e" % float( x ) ).split( 'e' )
+    return float( m ), int( e )
