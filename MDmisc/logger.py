@@ -31,7 +31,7 @@ class MyLogger:
         except KeyError:
             self.mode = modes[ 'debug' ]
             self.log.setLevel( self.mode )
-            self.warning( boxer( "logging mode level unknown : %s" % mode, "loggind mode set to default ('debug')." ) )
+            self.warning( boxer( "logging mode level unknown : %s" % mode, "logging mode set to default ('debug')." ) )
             
     def leveler( self, msg, level ):
         return "\t" * level + msg
