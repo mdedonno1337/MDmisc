@@ -7,6 +7,7 @@ import unittest
 from MDmisc import binary
 from MDmisc import string
 from MDmisc import xfrange
+from MDmisc import multiple_sample
 
 
 def MDmisctsets():
@@ -15,6 +16,7 @@ def MDmisctsets():
     tests.addTests( doctest.DocTestSuite( binary ) )
     tests.addTests( doctest.DocTestSuite( string ) )
     tests.addTests( doctest.DocTestSuite( xfrange ) )
+    tests.addTests( doctest.DocTestSuite( multiple_sample ) )
     
     return tests
 
