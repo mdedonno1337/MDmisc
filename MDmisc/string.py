@@ -2,6 +2,7 @@
 # -*- coding: UTF-8 -*-
 
 import collections
+import unicodedata
 
 def upper( data ):
     """
@@ -124,3 +125,6 @@ def unicode2str( data ):
     
     else:
         return data
+
+def remove_accents( data, encodingin = 'ISO-8859-1', encodingout = 'ASCII' ):
+    unicodedata.normalize( 'NFKD', ( unicode( data, encodingin ) ) ).encode( encodingout, 'ignore' )
