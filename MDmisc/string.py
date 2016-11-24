@@ -127,4 +127,7 @@ def unicode2str( data ):
         return data
 
 def remove_accents( data, encodingin = 'ISO-8859-1', encodingout = 'ASCII' ):
-    unicodedata.normalize( 'NFKD', ( unicode( data, encodingin ) ) ).encode( encodingout, 'ignore' )
+    if isinstance( data, str ):
+        data = unicode( data, encodingin )
+    
+    return unicodedata.normalize( 'NFKD', data ).encode( encodingout, 'ignore' )
