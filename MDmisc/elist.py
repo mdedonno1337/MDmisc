@@ -1,6 +1,8 @@
 #!/usr/bin/python
 # -*- coding: UTF-8 -*-
 
+import collections
+
 from .map_r import map_r
 
 def replace_r( x, s, r ):
@@ -13,7 +15,12 @@ def replace_r( x, s, r ):
     return map_r( test, x )
 
 def flatten( lst ):
-    return [ item for sublist in lst for item in sublist ]
+    for e in lst:
+        if isinstance( e, collections.Iterable ) and not isinstance( e, basestring ):
+            for sublist in flatten( e ):
+                yield sublist
+        else:
+            yield e
 
 def ifany( a, b ):
     for i in a:
