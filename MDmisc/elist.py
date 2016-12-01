@@ -21,3 +21,11 @@ def ifany( a, b ):
             return True
     else:
         return False
+
+def ifall( a, b ):
+    for i in a:
+        if i not in b:
+            return False
+    
+    else:
+        return True
