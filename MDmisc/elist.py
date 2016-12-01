@@ -36,3 +36,17 @@ def ifall( a, b ):
     
     else:
         return True
+
+class elist( list ):
+    """
+        Expension of the list class, adding multiples functionnalities.
+    """
+    def __init__( self, *data ):
+        super( elist, self ).__init__( flatten( data ) )
+        
+    def __call__( self, *args, **kwargs ):
+        """
+            Call a specific function of all elements of the list, and return the
+            list of results.
+        """
+        return [ e( *args, **kwargs ) for e in self ]
