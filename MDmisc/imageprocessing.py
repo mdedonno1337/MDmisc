@@ -14,7 +14,7 @@ def RAWToPIL( raw, size = ( 500, 500 ), res = None ):
         Convert a RAW string to PIL object. If the resolution is passed in
         argument, the PIL object resolution is set.
         
-        >>> RAWToPIL( chr( 255 ) * 250000, ( 500, 500 ) ) #doctest: +ELLIPSIS
+        >>> RAWToPIL( chr( 255 ) * 250000, ( 500, 500 ) ) # doctest: +ELLIPSIS
         <PIL.Image.Image image mode=L size=500x500 at 0x...>
     """
     img = Image.frombytes( 'L', size, raw )
