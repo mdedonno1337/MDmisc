@@ -37,6 +37,13 @@ def ifall( a, b ):
     else:
         return True
 
+def which( a, b ):
+    for e in a:
+        if e in b:
+            return e
+    else:
+        return None
+
 class elist( list ):
     """
         Expension of the list class, adding multiples functionnalities.
