@@ -44,3 +44,9 @@ class DefaultOrderedDict( OrderedDict ):
     def __repr__( self ):
         return 'DefaultOrderedDict(%s, %s)' % ( self.default_factory, OrderedDict.__repr__( self ) )
     
+    def to_dict( self ):
+        for key, value in self.iteritems():
+            if isinstance( value, DefaultOrderedDict ):
+                self[ key ] = value.to_dict()
+            
+        return dict( self )
