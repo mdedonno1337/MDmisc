@@ -1,6 +1,8 @@
 #!/usr/bin/python
 # -*- coding: UTF-8 -*-
 
+from __future__ import print_function
+
 import ctypes
 import sys
 
@@ -20,7 +22,7 @@ def run_as_admin( argv = None, debug = False ):
     argument_line = u' '.join( arguments )
     executable = unicode( sys.executable )
     if debug:
-        print 'Command line: ', executable, argument_line
+        print( 'Command line: ', executable, argument_line )
     ret = shell32.ShellExecuteW( None, u"runas", executable, argument_line, None, 1 )
     if int( ret ) <= 32:
         return False
