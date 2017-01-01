@@ -3,7 +3,7 @@
 
 import struct
 
-from .string import stringIterator
+from .string import join, stringIterator
 
 
 def int_to_bin( x, digits = 0 ):
@@ -77,11 +77,11 @@ def binstring_to_int( data ):
         >>> binstring_to_int( 'leet' )
         1818584436
     """
-    b = ""
+    b = []
     for c in data:
-        b += int_to_bin( ord( c ), 8 )
+        b.append( int_to_bin( ord( c ), 8 ) )
     
-    return bin_to_int( b )
+    return bin_to_int( join( b ) )
 
 def int_to_binstring( data, digits = 'up' ):
     """
@@ -95,7 +95,7 @@ def int_to_binstring( data, digits = 'up' ):
     
     iterbyte = stringIterator( b )
     
-    return "".join( [ chr( bin_to_int( iterbyte.take( 8 ) ) ) for _ in xrange( nbites ) ] )
+    return join( [ chr( bin_to_int( iterbyte.take( 8 ) ) ) for _ in xrange( nbites ) ] )
 
 
 def myhex( h ):
