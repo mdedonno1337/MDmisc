@@ -3,6 +3,8 @@
 
 from _collections import defaultdict
 
+import json
+
 from MDmisc.DefaultOrderedDict import DefaultOrderedDict
 
 class edefaultdict( defaultdict ):
@@ -15,6 +17,9 @@ class edefaultdict( defaultdict ):
                 self[ key ] = value.to_dict()
             
         return dict( self )
+    
+    def to_json(self):
+        return json.dumps( self.to_dict() )
 
 defDict = lambda: edefaultdict( defDict )
 defOrderedDict = lambda: DefaultOrderedDict( defOrderedDict )
