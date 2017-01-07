@@ -107,6 +107,9 @@ def myhex( h ):
     """
     return '{:02X}'.format( h )
 
+def hex_to_int( x ):
+    return int( x, 16 )
+
 if __name__ == "__main__":
     import doctest
     doctest.testmod()
