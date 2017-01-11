@@ -50,11 +50,11 @@ def join_r( c, lst = None ):
     if lst == None:
         c, lst = [], c
     
-    if lst == []:
+    if lst == [] or lst == ():
         return
     
-    if type( c ) == list:
-        if type( lst[ 0 ] ) == list:
+    if isinstance( c, ( list, tuple ) ):
+        if isinstance( lst[ 0 ], ( list, tuple ) ):
             lst = map( lambda x: join_r( c[ :-1 ], x ), lst )
         
         try:
