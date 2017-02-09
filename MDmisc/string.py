@@ -62,8 +62,8 @@ def join_r( c, lst = None ):
         except:
             last = ""
         
-    elif type( c ) == str:
-        if type( lst[ 0 ] ) == list:
+    elif isinstance( c, str ):
+        if isinstance( lst[ 0 ], list ):
             lst = map( lambda x: join_r( c, x ), lst )
             
         last = c
