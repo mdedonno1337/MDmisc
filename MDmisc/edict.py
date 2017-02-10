@@ -1,6 +1,8 @@
 #!/usr/bin/python
 # -*- coding: UTF-8 -*-
 
+import collections
+
 class edict( dict ):
     def reverse( self ):
         d = {}
@@ -25,5 +27,15 @@ class edict( dict ):
         
     def get_by_keys( self, lst ):
         return [ self.get( key ) for key in lst ]
+    
+def convert_unicode_to_str( data ):
+    if isinstance( data, basestring ):
+        return str( data )
+    elif isinstance( data, collections.Mapping ):
+        return dict( map( convert_unicode_to_str, data.iteritems() ) )
+    elif isinstance( data, collections.Iterable ):
+        return type( data )( map( convert_unicode_to_str, data ) )
+    else:
+        return data
     
 dict = edict
