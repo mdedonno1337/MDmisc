@@ -1,8 +1,8 @@
 #!/usr/bin/python
 # -*- coding: UTF-8 -*-
 
-import re
 import git
+import re
 
 def git_version( wd = "./", name = None ):
     try:
