@@ -14,11 +14,11 @@ def git_version( wd = "./", name = None ):
     else:
         try:
             describe = repo.git.describe( "--dirty" )
-            commit_count = repo.git.rev_list( "--count", "HEAD" )
+            commit_count = int( repo.git.rev_list( "--count", "HEAD" ) )
         
         except:
-            describe = "Unknown"
-            commit_count = "Unknown"
+            describe = None
+            commit_count = None
         
         finally:
             hash = repo.head.object.hexsha
