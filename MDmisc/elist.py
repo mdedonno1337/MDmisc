@@ -44,6 +44,9 @@ def which( a, b ):
     else:
         return None
 
+def rotate( lst, x ):
+    return lst[ x : ] + lst[ : x ]
+
 class elist( list ):
     """
         Expension of the list class, adding multiples functionnalities.
