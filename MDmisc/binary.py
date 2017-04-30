@@ -3,6 +3,7 @@
 
 import struct
 
+from .multimap import multimap
 from .string import join, stringIterator
 
 
@@ -97,6 +98,8 @@ def int_to_binstring( data, digits = 'up' ):
     
     return join( [ chr( bin_to_int( iterbyte.take( 8 ) ) ) for _ in xrange( nbites ) ] )
 
+def string_to_hex( value ):
+    return join( multimap( [ ord, myhex ], value ) )
 
 def myhex( h ):
     """
