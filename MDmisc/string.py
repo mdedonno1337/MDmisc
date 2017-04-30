@@ -106,6 +106,9 @@ class stringIterator( object ):
         self.index += n
         return ret
     
+    def show( self, n = 1 ):
+        return ''.join( self.data[ self.index: self.index + n ] )
+    
     def __iter__( self ):
         return self
     
