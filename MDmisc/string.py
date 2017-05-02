@@ -95,15 +95,19 @@ class stringIterator( object ):
     def __init__( self, data ):
         self.data = data
         self.index = 0
+        self.len = len( data )
+        self.toend = self.len
         
     def next( self ):
         ret = self.data[ self.index ]
         self.index += 1
+        self.toend -= 1
         return ret
     
     def take( self, n ):
         ret = ''.join( self.data[ self.index: self.index + n ] )
         self.index += n
+        self.toend -= n
         return ret
     
     def show( self, n = 1 ):
