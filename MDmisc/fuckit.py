@@ -90,7 +90,7 @@ class _fuckit( types.ModuleType ):
     
             if isinstance( node, ast.stmt ) and not isinstance( node, ast.FunctionDef ):
                 if sys.version_info[0] == 3:
-                    new_node = ast.Try( 
+                    new_node = ast.Try( # @UndefinedVariable
                         body = [node],
                         handlers = [ast.ExceptHandler( type = None,
                                                     name = None,
