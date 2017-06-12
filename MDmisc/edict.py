@@ -28,6 +28,16 @@ class edict( dict ):
     def get_by_keys( self, lst ):
         return [ self.get( key ) for key in lst ]
     
+    def get_r( self, path, split = "/" ):
+        if isinstance( path, ( str, unicode ) ):
+            path = path.split( split )
+        
+        tmp = self
+        for key in path:
+            tmp = tmp.get( key )
+        
+        return tmp
+    
 def convert_unicode_to_str( data ):
     if isinstance( data, basestring ):
         return str( data )
