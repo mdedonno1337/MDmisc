@@ -17,7 +17,7 @@ class edict( dict ):
             
         return d
     
-    def search(self, searched ):
+    def search( self, searched ):
         for key, value in self.iteritems():
             if value == searched:
                 return key
