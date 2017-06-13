@@ -47,5 +47,3 @@ def convert_unicode_to_str( data ):
         return type( data )( map( convert_unicode_to_str, data ) )
     else:
         return data
-    
-dict = edict
