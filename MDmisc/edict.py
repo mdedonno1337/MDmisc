@@ -34,8 +34,11 @@ class edict( dict ):
         
         tmp = self
         for key in path:
-            tmp = tmp.get( key )
-        
+            if key in tmp.keys():
+                tmp = tmp.get( key )
+            else:
+                raise KeyError( "'%s' key not found" % key )
+          
         return tmp
     
 def convert_unicode_to_str( data ):
