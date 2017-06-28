@@ -37,6 +37,10 @@ class edict( dict ):
             if key in tmp.keys():
                 tmp = tmp.get( key )
             else:
-                raise KeyError( "'%s' key not found" % key )
+                error = "'%s' key not found" % key
+                if len( path ) > 1:
+                    error += " (searching for: %s)" % split.join( path )
+                 
+                raise KeyError( error )
           
         return tmp
