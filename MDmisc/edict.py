@@ -40,13 +40,3 @@ class edict( dict ):
                 raise KeyError( "'%s' key not found" % key )
           
         return tmp
-    
-def convert_unicode_to_str( data ):
-    if isinstance( data, basestring ):
-        return str( data )
-    elif isinstance( data, collections.Mapping ):
-        return dict( map( convert_unicode_to_str, data.iteritems() ) )
-    elif isinstance( data, collections.Iterable ):
-        return type( data )( map( convert_unicode_to_str, data ) )
-    else:
-        return data
