@@ -36,3 +36,53 @@ def PILToRAW( pil ):
         25
     """
     return pil.convert( 'L' ).tobytes()
+
+################################################################################
+# 
+#    Image pasting
+# 
+################################################################################
+
+def vpaste( *imgs, **kwargs ):
+    mode = kwargs.get( "mode", "RGB" )
+    bg = kwargs.get( "bg", "white" )
+    
+    total_height = 0
+    total_width = 0
+    
+    for img in imgs:
+        w, h = img.size
+        total_height += h
+        total_width = max( total_width, w )
+    
+    ret = Image.new( mode, ( total_width, total_height ), bg )
+    
+    current_v = 0
+    
+    for img in imgs:
+        ret.paste( img, ( 0, current_v ) )
+        current_v += img.size[ 1 ]
+    
+    return ret
+
+def hpaste( *imgs, **kwargs ):
+    mode = kwargs.get( "mode", "RGB" )
+    bg = kwargs.get( "bg", "white" )
+    
+    total_height = 0
+    total_width = 0
+    
+    for img in imgs:
+        w, h = img.size
+        total_width += w
+        total_height = max( total_height, h )
+    
+    ret = Image.new( mode, ( total_width, total_height ), bg )
+    
+    current_h = 0
+    
+    for img in imgs:
+        ret.paste( img, ( current_h, 0 ) )
+        current_h += img.size[ 0 ]
+    
+    return ret
