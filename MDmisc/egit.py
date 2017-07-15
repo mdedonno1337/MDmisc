@@ -5,7 +5,7 @@ import git
 import re
 from types import ModuleType
 
-def git_version( wd = "./", name = None ):
+def git_version( wd = "./", name = None, **options ):
     if isinstance( wd, ModuleType ):
         return git_version( wd.__path__[ 0 ], wd.__name__ )
     
@@ -18,7 +18,7 @@ def git_version( wd = "./", name = None ):
         
         else:
             try:
-                describe = repo.git.describe( "--dirty" )
+                describe = repo.git.describe( "--dirty", options.get( "describe", None ) )
                 commit_count = int( repo.git.rev_list( "--count", "HEAD" ) )
             
             except:
