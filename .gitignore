@@ -2,4 +2,4 @@ MDmisc.egg-info/
 build/
 dist/
 void.py
-.pyc
+*.pyc
