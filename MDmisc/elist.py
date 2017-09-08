@@ -60,3 +60,7 @@ class elist( list ):
             list of results.
         """
         return [ e( *args, **kwargs ) for e in self ]
+
+def chunks( l, n ):
+    for i in xrange( 0, len( l ), n ):
+        yield l[i:i + n]
