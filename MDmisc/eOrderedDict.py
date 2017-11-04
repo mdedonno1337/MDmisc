@@ -21,4 +21,8 @@ def eOrderedDictParser( obj ):
         for i, ( k, v ) in enumerate( obj.iteritems() ):
             eOrderedDictParser( v )
     
+    elif isinstance( obj, list ):
+        for i, v in enumerate( obj ):
+            eOrderedDictParser( v )
+    
     return obj
