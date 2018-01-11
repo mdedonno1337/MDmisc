@@ -113,6 +113,32 @@ def myhex( h ):
 def hex_to_int( x ):
     return int( x, 16 )
 
+def bindump( data ):
+    ret = [ "Offset    00 01 02 03 04 05 06 07 08 09 0A 0B 0C 0D 0E 0F    ASCII", "-" * 77 ]
+    
+    for offset in xrange( 0, len( data ), 16 ):
+        tmpbin = []
+        tmpascii = []
+        for col in xrange( 0, 16 ):
+            try:
+                c = data[ offset + col ]
+                tmpbin.append( myhex( ord( c ) ) )
+                if ord( c ) < 20:
+                    tmpascii.append( "." )
+                else:
+                    tmpascii.append( c )
+            except:
+                break
+        
+        bindata = " ".join( tmpbin )
+        asciidata = "".join( tmpascii )
+        
+        line = "%06X    %-50s %s" % ( offset, bindata, asciidata )
+        
+        ret.append( line )
+    
+    return "\n".join( ret )
+
 if __name__ == "__main__":
     import doctest
     doctest.testmod()
