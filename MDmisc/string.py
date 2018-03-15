@@ -142,7 +142,10 @@ def unicode2str( data ):
 def remove_accents( data, encodingin = 'ISO-8859-1', encodingout = 'ASCII' ):
     if isinstance( data, dict ):
         for key, value in data.iteritems():
-            data[ key ] = remove_accents( value, encodingin, encodingout )
+            try:
+                data[ key ] = remove_accents( value, encodingin, encodingout )
+            except TypeError:
+                continue
         return data
     else:
         if isinstance( data, str ):
