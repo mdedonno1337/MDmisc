@@ -2,12 +2,17 @@
 # -*- coding: UTF-8 -*-
 
 class rotating_list( object ):
-    def __init__( self, data ):
-        self.data = data
+    def __init__( self, data = None ):
+        if data == None:
+            self.data = []
+        else:
+            self.data = data
         self.i = 0
-        self.max = len( data )
+    
+    def append( self, el ):
+        return self.data.append( el )
     
     def next( self ):
-        d = self.data[ self.i % self.max ]
-        self.i += 1
+        d = self.data[ self.i ]
+        self.i = ( self.i + 1 ) % len( self.data )
         return d
