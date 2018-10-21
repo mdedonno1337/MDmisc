@@ -12,13 +12,17 @@ def LaTeX_scientific_notation( nb, digits = 5, eng = False ):
             >>> LaTeX_scientific_notation( 1.337e3 )
             '$1.33700 \\\\times 10^{+3}$'
     """
-    mantisse, exp = frexp10( nb )
-    sign = '+' if exp > 0 else ''
+    try:
+        mantisse, exp = frexp10( nb )
+        sign = '+' if exp > 0 else ''
+        
+        if eng:
+            expdiff = exp % 3
+            if expdiff != 0:
+                mantisse *= pow( 10, expdiff )
+                exp -= expdiff
+        
+        return ( r"$%%.%df \times 10^{%%s%%d}$" % digits ) % ( mantisse, sign, exp )
     
-    if eng:
-        expdiff = exp % 3
-        if expdiff != 0:
-            mantisse *= pow( 10, expdiff )
-            exp -= expdiff
-    
-    return ( r"$%%.%df \times 10^{%%s%%d}$" % digits ) % ( mantisse, sign, exp )
+    except:
+        return nb
