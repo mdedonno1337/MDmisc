@@ -6,6 +6,16 @@ import struct
 from .multimap import multimap
 from .string import join, stringIterator
 
+def sideways_sum( x ):
+    """
+        Return the sideways_sum of a number.
+        
+        >>> sideways_sum( 11101 )
+        4
+        >>> sideways_sum( 1337 )
+        14
+    """
+    return sum( [ int( c ) for c in str( x ) ] )
 
 def int_to_bin( x, digits = 0 ):
     """
