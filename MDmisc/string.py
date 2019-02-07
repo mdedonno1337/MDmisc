@@ -125,10 +125,9 @@ def split_no_empty( data, string ):
     """
     return [ value for value in data.split( string ) if value != "" ]
 
-
 def unicode2str( data ):
     if isinstance( data, basestring ):
-        return str( data )
+        return str( data.encode( 'utf-8' ).strip() )
     
     elif isinstance( data, collections.Mapping ):
         return dict( map( unicode2str, data.iteritems() ) )
