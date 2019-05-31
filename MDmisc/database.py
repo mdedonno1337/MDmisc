@@ -2,6 +2,7 @@
 # -*- coding: UTF-8 -*-
 
 import psycopg2
+import psycopg2.extras
 import re
 
 def urlsplit( url ):
@@ -11,7 +12,6 @@ def urlsplit( url ):
 class Database( object ):
     def __init__( self, url, docommit = True ):
         self.conn = psycopg2.connect( **urlsplit( url ) )
-        
         self.docommit = docommit
             
     def cursor( self ):
@@ -25,9 +25,13 @@ class Database( object ):
         self.conn.close()
     
     def query( self, sql, *args, **kwargs ):
-        c = self.conn.cursor()
-        c.execute( sql, *args, **kwargs )
-        return c
+        try:
+            c = self.conn.cursor( cursor_factory = psycopg2.extras.DictCursor )
+            c.execute( sql, *args, **kwargs )
+            return c
+        except:
+            self.conn.rollback()
+            return False
     
     def query_fetchone( self, sql ):
         return self.query( sql ).fetchone()
