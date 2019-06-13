@@ -33,11 +33,11 @@ class Database( object ):
             self.conn.rollback()
             return False
     
-    def query_fetchone( self, sql ):
-        return self.query( sql ).fetchone()
+    def query_fetchone( self, sql, data = () ):
+        return self.query( sql, data ).fetchone()
     
-    def query_fetchall( self, sql ):
-        return self.query( sql ).fetchall()
+    def query_fetchall( self, sql, data = () ):
+        return self.query( sql, data ).fetchall()
     
     def __enter__( self ):
         return self
