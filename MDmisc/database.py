@@ -11,8 +11,12 @@ def urlsplit( url ):
 
 class Database( object ):
     def __init__( self, url, docommit = True ):
-        self.conn = psycopg2.connect( **urlsplit( url ) )
+        self.url = url
         self.docommit = docommit
+        self.connect()
+    
+    def connect( self ):
+        self.conn = psycopg2.connect( **urlsplit( self.url ) )
             
     def cursor( self ):
         return self.conn.cursor()
