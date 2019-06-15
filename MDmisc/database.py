@@ -28,6 +28,14 @@ class Database( object ):
     def close( self ):
         self.conn.close()
     
+    def check( self ):
+        try:
+            self.query( "SELECT 1" )
+            return True
+        
+        except:
+            return False
+    
     def query( self, sql, *args, **kwargs ):
         try:
             c = self.conn.cursor( cursor_factory = psycopg2.extras.DictCursor )
