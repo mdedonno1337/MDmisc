@@ -133,7 +133,7 @@ def bindump( data ):
             try:
                 c = data[ offset + col ]
                 tmpbin.append( myhex( ord( c ) ) )
-                if ord( c ) < 20:
+                if ord( c ) <= 31:
                     tmpascii.append( "." )
                 else:
                     tmpascii.append( c )
